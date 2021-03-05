@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+.clearfix {
+  content: '';
+  display: table;
+  clear: both;
+}
+.float_left {
+  float: left;
+}
+.float_right {
+  float: right;
+}
+/* HEADER */
+header {
+  width: 100%;
+  height: 90px;
+  padding: 0 20px;
+  background-color: black;
+}
+#logo, #search {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 200px;
+  text-align: center;
+  color: red;
+}
+#logo h2 {
+  color: red;
+}
+#search {
+  justify-content: flex-end;
+}
+#search input {
+  height: 30px;
+  line-height: 30px;
+  font-size: 20px;
+}
+
+/* MAIN */
+main {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: calc(100vh - 90px);
+  padding: 30px;
+  background-color: #434343;
+  overflow-y: auto;
+}
+main .thubnail {
+  cursor: pointer;
+  position: relative;
+  height: 330px;
+  width: 220px;
+  border: 2px solid white;
+  margin-bottom: 60px;
+  background-color: black;
+  text-align: center;
+  margin-left: 5px;
+  transition: opacity 2s ease-in;
+}
+
+main .thubnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main .thubnail h4 {
+  margin-top: 5px;
+  color:  white;
+}
+.description_box {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px 4px;
+  background-color: black;
+  font-weight: lighter;
+  color: white;
+  overflow-y: auto;
+  text-align: left;
+}
+main .thubnail:hover .description_box {
+  display: block;
+  opacity: 1;
+}
+.description_box i {
+  font-size: 14px;
+  color: #FFBD00;
+}
+.description_box span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: red;
+}
+.description_box span img {
+  width: 100%;
+}
+
+main #background {
+  postion absolute;
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+}
+main #background div {
+  width: 400px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.54);
+}
+main #background div h2 {
+  color: white;
+  font-size: 35px;
+}

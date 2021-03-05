@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- key : a8fa660c5c4ea61b09b818ec21b9b84d -->
+<!-- https://image.tmdb.org/t/p/w220_and_h330_face -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js" integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ==" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <title>Boolfix</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- header -->
+      <header class="clearfix">
+        <div id="logo" class=" float_left">
+          <h2>BOOLFLIX</h2>
+        </div>
+
+        <div id="search" class="float_right">
+          <input type="text" v-model="searchedFilm" placeholder="Cerca" @keydown.enter="searchFilms">
+        </div>
+      </header>
+      <!-- /header -->
+      <main>
+        <div id="background" v-if="films.length == 0">
+          <div>
+            <h2>Usa la barra di ricerca, per trovare le tue serie TV/Film preferiti</h2>
+          </div>
+        </div>
+        <div class="thubnail" v-for="(film, index) in films">
+          <img v-if="film.poster_path == null " src="https://image.tmdb.org/t/p/w342/wwemzKWzjKYJFfCeiB57q3r4Bcm.png" alt="film.title" style="object-fit: contain; padding: 10px; height: 100%; ">
+          <img v-else :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" alt="film.title">
+          <div class="description_box">
+            <div><strong>Titolo:</strong>{{film.title}}</div>
+            <div><strong>Titolo originale:</strong>{{film.original_title}}</div>
+            <div><strong>Voto:</strong>
+              <i class="fas fa-star" v-for="n in Math.floor(film.vote_average / 2)"></i>
+              <i class="far fa-star" v-for="n in (5 - Math.floor(film.vote_average / 2))"></i>
+            </div>
+            <div><strong>Overview:</strong>{{film.overview}}</div>
+            <span>
+              <img v-if="film.original_language == 'en'" :src="'img/' + film.original_language + '.png'" :alt="film.original_language + 'flag'">
+              <img v-else-if="film.original_language == 'de'" :src="'img/' + film.original_language + '.png'" :alt="film.original_language + 'flag'">
+              <img v-else-if="film.original_language == 'fr'" :src="'img/' + film.original_language + '.png'" :alt="film.original_language + 'flag'">
+            </span>
+          </div>
+          <h4>{{film.title}}</h4>
+        </div>
+
+      </main>
+    </div>
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>
